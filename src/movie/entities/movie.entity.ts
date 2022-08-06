@@ -5,7 +5,7 @@ import {
   ManyToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Cast } from '../../cast/entities/cast.entity';
+import { Actor } from '../../actor/entities/actor.entity';
 
 @Entity({
   name: 'movies',
@@ -17,6 +17,7 @@ export class Movie {
   @Column({
     name: 'title',
     nullable: false,
+    unique: true,
   })
   title: string;
 
@@ -27,7 +28,7 @@ export class Movie {
   })
   description: string;
 
-  @ManyToMany(() => Cast)
+  @ManyToMany(() => Actor)
   @JoinTable()
-  cast: Cast[];
+  actors: Actor[];
 }

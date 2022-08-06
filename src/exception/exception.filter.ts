@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 import { FastifyReply } from 'fastify';
 import { isClientException } from './exception-generator';
-import { SystemExceptionClientCode } from './exception-client-code.constant';
+import { SystemExceptionClient } from './exception-client-code.constant';
 
 @Catch(HttpException)
 export class ClientExceptionFilter implements ExceptionFilter {
@@ -45,9 +45,9 @@ export class ClientExceptionFilter implements ExceptionFilter {
     this.logger.error(errorResponse);
 
     response.status(HttpStatus.INTERNAL_SERVER_ERROR).send({
-      errorCode: SystemExceptionClientCode.GOT_ISSUE.errorCode,
+      errorCode: SystemExceptionClient.GOT_ISSUE.errorCode,
       statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-      message: SystemExceptionClientCode.GOT_ISSUE.message,
+      message: SystemExceptionClient.GOT_ISSUE.message,
     });
   }
 }

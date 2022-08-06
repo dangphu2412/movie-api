@@ -9,7 +9,7 @@ import {
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { AuthExceptionClientCode } from '../exception/exception-client-code.constant';
+import { AuthExceptionClient } from '../exception/exception-client-code.constant';
 import { Transactional } from 'typeorm-transactional-cls-hooked';
 import {
   RoleService,
@@ -55,7 +55,7 @@ export class AuthServiceImpl implements AuthService {
 
     if (user) {
       throw new UnprocessableEntityException(
-        AuthExceptionClientCode.DUPLICATED_USERNAME,
+        AuthExceptionClient.DUPLICATED_USERNAME,
       );
     }
 
@@ -100,7 +100,7 @@ export class AuthServiceImpl implements AuthService {
       ))
     ) {
       throw new UnprocessableEntityException(
-        AuthExceptionClientCode.INCORRECT_USERNAME_OR_PASSWORD,
+        AuthExceptionClient.INCORRECT_USERNAME_OR_PASSWORD,
       );
     }
     const roleKeys = AuthServiceImpl.toRoleKeys(user.roles);
@@ -125,7 +125,7 @@ export class AuthServiceImpl implements AuthService {
       };
     } catch (e) {
       await this.roleStorage.clean(sub);
-      throw new UnauthorizedException(AuthExceptionClientCode.LOGOUT_REQUIRED);
+      throw new UnauthorizedException(AuthExceptionClient.LOGOUT_REQUIRED);
     }
   }
 }

@@ -4,6 +4,7 @@ import { User } from '../../user/entities/user.entity';
 import { Role } from '../../authorization/entities/role.entity';
 import { Menu } from '../../menu/entities/menu.entity';
 import { Movie } from '../../movie/entities/movie.entity';
+import { Actor } from '../../actor/entities/actor.entity';
 
 dotenv.config();
 
@@ -16,7 +17,7 @@ export const connectionConfig: TypeOrmModuleOptions = {
   password: process.env.DB_PASSWORD,
   port: parseInt(process.env.DB_PORT),
   database: process.env.DB_DATABASE,
-  entities: [User, Role, Menu, Movie],
+  entities: [User, Role, Menu, Movie, Actor],
   synchronize: isNotProd,
   logging: isNotProd,
   migrationsRun: false,

@@ -4,9 +4,10 @@ import { MovieController } from './movie.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MovieRepository } from './movie.repository';
 import { MovieServiceToken } from './client/movie.service';
+import { ActorModule } from '../actor/actor.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([MovieRepository])],
+  imports: [ActorModule, TypeOrmModule.forFeature([MovieRepository])],
   controllers: [MovieController],
   providers: [
     {
