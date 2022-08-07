@@ -25,7 +25,8 @@
     "migrate:latest": "npm run typeorm migration:run",
     "migrate:rollback": "npm run typeorm migration:revert",
     "schema:drop": "npm run typeorm schema:drop",
-    "schema:sync": "npm run typeorm schema:sync"
+    "schema:sync": "npm run typeorm schema:sync",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@fastify/helmet": "8.0.0",
@@ -43,6 +44,7 @@
     "class-validator": "^0.13.2",
     "fastify-compress": "^4.1.0",
     "fastify-swagger": "^5.2.0",
+    "husky": "^8.0.1",
     "lodash.isempty": "^4.4.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
