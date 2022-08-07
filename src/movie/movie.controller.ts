@@ -13,7 +13,7 @@ export class MovieController {
   ) {}
 
   @Get()
-  findMovie() {
+  findMovies() {
     return this.movieService.find();
   }
 

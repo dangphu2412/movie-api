@@ -13,7 +13,7 @@ import {
   MovieExceptionClient,
 } from '../exception/exception-client-code.constant';
 import { Movie } from './entities/movie.entity';
-import { isEmpty } from 'class-validator';
+import isEmpty from 'lodash.isempty';
 
 @Injectable()
 export class MovieServiceImpl implements MovieService {
