@@ -21,9 +21,9 @@ export const ActorExceptionClient = {
 };
 
 export const MovieExceptionClient = {
-  NO_MOVIE_FOUND: generateClientException({
-    errorCode: 'MOVIE__NO_MOVIE_FOUND',
-    message: 'No movie(s) found',
+  DUPLICATED_TITLE: generateClientException({
+    errorCode: 'MOVIE__DUPLICATED_TITLE',
+    message: 'This title has been existed',
   }),
 };
 

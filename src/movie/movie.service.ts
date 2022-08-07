@@ -1,4 +1,9 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Inject,
+  Injectable,
+  NotFoundException,
+  UnprocessableEntityException,
+} from '@nestjs/common';
 import { MovieService } from './client/movie.service';
 import { CreateMovieDto } from './entities/dtos/create-movie.dto';
 import { MovieRepository } from './movie.repository';
@@ -31,14 +36,10 @@ export class MovieServiceImpl implements MovieService {
       throw new NotFoundException(ActorExceptionClient.NO_ACTOR_FOUND);
     }
 
-    const isExisted = !!(await this.movieRepository.findOne({
-      where: {
-        title: dto.title,
-      },
-    }));
-
-    if (isExisted) {
-      throw new NotFoundException(MovieExceptionClient.NO_MOVIE_FOUND);
+    if (await this.movieRepository.isTitleExisted(dto.title)) {
+      throw new UnprocessableEntityException(
+        MovieExceptionClient.DUPLICATED_TITLE,
+      );
     }
 
     const newMovie = new Movie();

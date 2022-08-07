@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ActorController } from '../actor.controller';
 import { ActorService, ActorServiceToken } from '../client/actor.service';
+import { Actor } from '../entities/actor.entity';
 
 describe('CastController', () => {
   let controller: ActorController;
@@ -23,7 +24,15 @@ describe('CastController', () => {
     service = module.get(ActorServiceToken);
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
+  it('can search author by search query', async () => {
+    const result: Actor[] = [
+      {
+        name: 'test',
+        movies: [],
+        id: '1',
+      },
+    ];
+    jest.spyOn(service, 'search').mockResolvedValue(result);
+    expect(await controller.search('test')).toEqual(result);
   });
 });

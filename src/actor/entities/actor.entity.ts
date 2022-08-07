@@ -15,5 +15,5 @@ export class Actor {
   name: string;
 
   @ManyToMany(() => Movie)
-  movies: string;
+  movies: Movie[];
 }
